@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'YTouchScope_Example' do
+  pod 'YTouchScope', :path => '../'
+
+  target 'YTouchScope_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
