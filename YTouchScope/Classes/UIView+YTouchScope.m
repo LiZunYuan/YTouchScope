@@ -26,10 +26,13 @@
 {
     [self aspect_hookSelector:@selector(willMoveToSuperview:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aspectInfo, UIView *superView){
         UIView *view = [aspectInfo instance];
-        if (view.superview) {
-            [[view.superview y_aspectToken] remove];
-        }
         
+        if (view.superview) {
+            [view.superview y_removeTouchScopeViews:view];
+            if ([view.superview y_touchScopeViwes].count == 0) {
+                [[view.superview y_aspectToken] remove];
+            }
+        }
         [superView y_addTouchScopeViews:view scopeSize:CGSizeMake(75, 75)];
         [superView y_handleHitTest];
         
@@ -38,7 +41,7 @@
 
 - (void)y_handleHitTest
 {
-    [self aspect_hookSelector:@selector(hitTest:withEvent:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aspectInfo, CGPoint point){
+    id<AspectToken> aspectToken = [self aspect_hookSelector:@selector(hitTest:withEvent:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aspectInfo, CGPoint point){
         void * r;
         __block NSInvocation *invocation = aspectInfo.originalInvocation;
         [invocation invoke];
@@ -66,6 +69,8 @@
             }
         }];
     } error:NULL];
+    
+    [self y_setAspectToken:aspectToken];
 }
 
 #pragma set get
