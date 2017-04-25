@@ -7,6 +7,7 @@
 //
 
 #import "YViewController.h"
+#import "UIView+YTouchScope.h"
 
 @interface YViewController ()
 
@@ -17,13 +18,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setFrame:CGRectMake(25, 25, 50, 50)];
+    [btn y_touchScopeSize:CGSizeMake(75, 75)];
+    [self.view addSubview:btn];
+    [btn setBackgroundColor:[UIColor grayColor]];
+    [btn addTarget:self action:@selector(print123) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *bbtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [bbtn setFrame:CGRectMake(100, 25, 50, 50)];
+    [bbtn setBackgroundColor:[UIColor redColor]];
+    [self.view addSubview:bbtn];
+    [bbtn y_touchScopeSize:CGSizeMake(75, 75)];
+    [bbtn addTarget:self action:@selector(print456) forControlEvents:UIControlEventTouchUpInside];
+    
+    //    [bbtn addGestureRecognizer:[UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+    //        NSLog(@"5");
+    //    }]];
+    
 }
 
-- (void)didReceiveMemoryWarning
+- (void)print123
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"123");
 }
 
+- (void)print456
+{
+    NSLog(@"456");
+}
 @end
