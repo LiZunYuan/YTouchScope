@@ -13,6 +13,7 @@
 //设置范围的大小
 - (void)y_touchScopeSize:(CGSize)size;
 
+- (void)y_touchScopeSize:(CGSize)scopeSize showDebugView:(BOOL)showDebugView;
 //范围扩大一倍
 //- (void)touchScopex2;
 

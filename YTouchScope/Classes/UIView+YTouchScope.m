@@ -12,9 +12,39 @@
 
 @implementation UIView (YTouchScope)
 
-static char YTouchScopeViewsKey;
-- (void)y_touchScopeSize:(CGSize)scopeSize
+- (void)y_touchScopeSize:(CGSize)size
 {
+    [self y_touchScopeSize:size showDebugView:NO];
+}
+
+static char YTouchScopeViewsKey;
+- (void)y_touchScopeSize:(CGSize)scopeSize showDebugView:(BOOL)showDebugView
+{
+    if (showDebugView) {
+        [self aspect_hookSelector:@selector(layoutSubviews) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> aspectInfo){
+            static char YTouchScopeViewDebugViewKey;
+            
+            UIView *beforeView = objc_getAssociatedObject(self, &YTouchScopeViewDebugViewKey);
+            [beforeView removeFromSuperview];
+            
+            UIView *nowView = [aspectInfo instance];
+            UIView *v = [UIView new];
+            [v setFrame:CGRectMake(-(scopeSize.width-self.frame.size.width)/2.0, -(scopeSize.height-self.frame.size.height)/2.0, scopeSize.width, scopeSize.height)];
+            [v setUserInteractionEnabled:NO];
+            
+            [nowView.superview setClipsToBounds:YES];
+            
+            [nowView addSubview:v];
+            [nowView setClipsToBounds:NO];
+            
+            
+            [v setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.1]];
+            
+            objc_setAssociatedObject(self, &YTouchScopeViewDebugViewKey, v, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            
+        } error:NULL];
+    }
+    
     [self y_removeAspectToken];
     
     id<AspectToken> aspectToken = [self aspect_hookSelector:@selector(pointInside:withEvent:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aspectInfo, CGPoint point){

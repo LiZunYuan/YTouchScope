@@ -19,8 +19,6 @@
 {
     [super viewDidLoad];
     
-    [self.view y_touchScopeSize:CGSizeMake(1000, 1000)];
-    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:CGRectMake(25, 25, 50, 50)];
     [btn y_touchScopeSize:CGSizeMake(75, 75)];
@@ -32,13 +30,10 @@
     [bbtn setFrame:CGRectMake(100, 25, 50, 50)];
     [bbtn setBackgroundColor:[UIColor redColor]];
     [self.view addSubview:bbtn];
-    [bbtn y_touchScopeSize:CGSizeMake(75, 75)];
+    [bbtn y_touchScopeSize:CGSizeMake(75, 75);
     [bbtn addTarget:self action:@selector(print456) forControlEvents:UIControlEventTouchUpInside];
     
-    //    [bbtn addGestureRecognizer:[UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-    //        NSLog(@"5");
-    //    }]];
-    
+ 
     
     
     UIImageView *iv = [UIImageView new];
