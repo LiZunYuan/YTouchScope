@@ -19,6 +19,8 @@
 {
     [super viewDidLoad];
     
+    [self.view y_touchScopeSize:CGSizeMake(1000, 1000)];
+    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:CGRectMake(25, 25, 50, 50)];
     [btn y_touchScopeSize:CGSizeMake(75, 75)];
@@ -37,6 +39,20 @@
     //        NSLog(@"5");
     //    }]];
     
+    
+    
+    UIImageView *iv = [UIImageView new];
+    [iv setBackgroundColor:[UIColor whiteColor]];
+    [btn addSubview:iv];
+    [iv setFrame:CGRectMake(0, 0, 40, 40)];
+    [iv setUserInteractionEnabled:YES];
+    
+    UIButton *b2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [b2 setBackgroundColor:[UIColor redColor]];
+    [b2 setFrame:CGRectMake(0, 0, 20, 20)];
+    [iv addSubview:b2];
+    [b2 addTarget:self action:@selector(printb2) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 - (void)print123
@@ -47,5 +63,10 @@
 - (void)print456
 {
     NSLog(@"456");
+}
+
+- (void)printb2
+{
+    NSLog(@"b2");
 }
 @end
