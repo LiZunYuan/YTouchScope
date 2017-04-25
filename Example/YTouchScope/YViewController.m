@@ -47,7 +47,10 @@
     [iv setFrame:CGRectMake(0, 0, 40, 40)];
     [iv setUserInteractionEnabled:YES];
     
+    
     UIButton *b2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    [b2 y_touchScopeSize:CGSizeMake(40, 40)];
     [b2 setBackgroundColor:[UIColor redColor]];
     [b2 setFrame:CGRectMake(0, 0, 20, 20)];
     [iv addSubview:b2];
