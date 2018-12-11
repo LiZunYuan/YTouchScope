@@ -1,0 +1,27 @@
+{
+  "name": "YTouchScope",
+  "version": "0.1.0",
+  "summary": "A short description of YTouchScope.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/LiZunYuan/YTouchScope",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "LiZunYuan": "zunyuan.li@husor.com.cn"
+  },
+  "source": {
+    "git": "https://github.com/LiZunYuan/YTouchScope.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "YTouchScope/Classes/**/*",
+  "dependencies": {
+    "Aspects": [
+      "~> 1.4.1"
+    ]
+  }
+}

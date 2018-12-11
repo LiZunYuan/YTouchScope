@@ -1,0 +1,6 @@
+framework module YTouchScope {
+  umbrella header "YTouchScope-umbrella.h"
+
+  export *
+  module * { export * }
+}
